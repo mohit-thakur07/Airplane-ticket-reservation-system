@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 public class JListComponent extends JPanel {
@@ -25,14 +26,16 @@ public class JListComponent extends JPanel {
 		lblAirline.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblAirline);
 		
-		JLabel lblDepartureTime = new JLabel(depTime);
+		JTextArea lblDepartureTime = new JTextArea(depTime);
+		lblDepartureTime.setWrapStyleWord(true);
+		lblDepartureTime.setLineWrap(true);
 		lblDepartureTime.setBounds(10, 50, 89, 38);
-		lblDepartureTime.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblDepartureTime);
 		
-		JLabel lblArrivalTime = new JLabel(arrTime);
+		JTextArea lblArrivalTime = new JTextArea(arrTime);
+		lblArrivalTime.setWrapStyleWord(true);
+		lblArrivalTime.setLineWrap(true);
 		lblArrivalTime.setBounds(114, 50, 83, 38);
-		lblArrivalTime.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblArrivalTime);
 		
 		JLabel lblPrice = new JLabel(String.valueOf(price));
@@ -41,7 +44,7 @@ public class JListComponent extends JPanel {
 		add(lblPrice);
 		
 		btnSelectFlight = new JButton("Select Flight");
-		btnSelectFlight.setBounds(114, 90, 120, 30);
+		btnSelectFlight.setBounds(81, 95, 120, 30);
 		add(btnSelectFlight);
 	}
 

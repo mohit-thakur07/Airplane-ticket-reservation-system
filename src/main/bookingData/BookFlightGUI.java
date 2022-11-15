@@ -178,7 +178,16 @@ public class BookFlightGUI extends JFrame {
 							BookingDetail booking = new BookingDetail(isRoundTrip, flightID, flightID_return, flightClass,
 								new int[] { numberOfInfants, numberOfChildren, numberOfAdults }, ticketPrice,
 								ticketPrice_return, passengers);
+							
 							if(BookingDataDAL.AddNewBooking(booking)){
+								
+								FlightDataDAL.UpdateFlightData(flight);
+								FlightDataDAL.UpdateFlightData(flight_return);
+								
+								setVisible(false);
+								JFrame frame = new JFrame();
+								JOptionPane.showMessageDialog(frame, "Booking Added Successfully.\nPlease Note your booking id\nBooking ID: " + booking.getBookingId());
+								
 								System.out.println(booking.getBookingId());
 							}
 							else{
@@ -259,7 +268,7 @@ public class BookFlightGUI extends JFrame {
 			for (FlightDetail f : flights) {
 
 				JListComponent c = new JListComponent(f.getFlightID(), f.getAirlineName(),
-						f.getDepartureDate().toLocaleString(), f.getDepartureDate().toLocaleString(),
+						f.getDepartureDate().toLocaleString(), f.getArrivalDate().toLocaleString(),
 						f.getTicketPrice()[flightClass]);
 				flightComponents.add(c);
 
@@ -284,30 +293,6 @@ public class BookFlightGUI extends JFrame {
 		} catch (Exception e) {
 			System.out.println("Error while fetching data!!!");
 		}
-
-		// for(int i = 0; i < 10; i++){
-		//
-		// JListComponent c = new JListComponent("1001", "pasha", "subah",
-		// "shaam", 1000 + i * 100);
-		// flightComponents.add(c);
-		//
-		// c.btnSelectFlight.addActionListener(new ActionListener() {
-		// public void actionPerformed(ActionEvent arg0) {
-		//
-		// for(JListComponent fc : flightComponents){
-		// fc.setBackground(Color.LIGHT_GRAY);
-		// }
-		//
-		// flightID = "1001";
-		//
-		// txtpnDepartureFlightDetails.setText("ID: " + "1001" + " Airline: " +
-		// "pasha" + " Price: " + 1000);
-		// c.setBackground(Color.GREEN);
-		// }
-		// });
-		//
-		// nestedPanel.add(c);
-		// }
 
 		JScrollPane scrollPane = new JScrollPane(nestedPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -339,7 +324,7 @@ public class BookFlightGUI extends JFrame {
 				for (FlightDetail f : return_flights) {
 
 					JListComponent c = new JListComponent(f.getFlightID(), f.getAirlineName(),
-							f.getDepartureDate().toLocaleString(), f.getDepartureDate().toLocaleString(),
+							f.getDepartureDate().toLocaleString(), f.getArrivalDate().toLocaleString(),
 							ticketPrice_return);
 					returnFlightComponents.add(c);
 
