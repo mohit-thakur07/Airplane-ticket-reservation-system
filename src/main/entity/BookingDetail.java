@@ -39,6 +39,10 @@ public class BookingDetail implements Serializable {
 		this.ticketPrice_Return = ticketPrice_Return;
 		this.passengers = passengers;
 	}
+	
+	public String getFlightId(){
+		return flightID;
+	}
 
 	public int getBookingId() {
 		return bookingId;

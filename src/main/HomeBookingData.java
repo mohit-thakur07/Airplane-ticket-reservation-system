@@ -80,7 +80,7 @@ public class HomeBookingData extends JFrame {
 		CancelFlightButton.setBounds(32, 245, 168, 52);
 		contentPane.add(CancelFlightButton);
 
-		JButton FlightDetailByIDButton = new JButton("Get Flight Detail");
+		JButton FlightDetailByIDButton = new JButton("Booking Detail");
 		FlightDetailByIDButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GetBookingByIDGUI gbi = new GetBookingByIDGUI();

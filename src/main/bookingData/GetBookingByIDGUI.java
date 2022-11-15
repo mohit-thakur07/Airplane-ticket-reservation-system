@@ -3,6 +3,7 @@ package main.bookingData;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import main.HomeBookingData;
 import main.dal.BookingDataDAL;
+import main.dal.FlightDataDAL;
 import main.entity.BookingDetail;
 
 public class GetBookingByIDGUI extends JFrame {
@@ -45,8 +47,12 @@ public class GetBookingByIDGUI extends JFrame {
 		bookingId.setColumns(10);
 
 		JTextArea ResultArea = new JTextArea();
+		ResultArea.setWrapStyleWord(true);
+		ResultArea.setLineWrap(true);
+		ResultArea.setColumns(10);
+		ResultArea.setRows(10);
 		ResultArea.setFont(new Font("Monospaced", Font.PLAIN, 18));
-		ResultArea.setBounds(133, 133, 405, 48);
+		ResultArea.setBounds(68, 133, 514, 362);
 		ResultArea.setVisible(false);
 		contentPane.add(ResultArea);
 
@@ -59,8 +65,13 @@ public class GetBookingByIDGUI extends JFrame {
 
 				if (booking == null)
 					ResultArea.setText("Invalid bookingID");
-				else
-					ResultArea.setText(booking.toString());
+				else{
+					Date date = FlightDataDAL.getFlightDetail(booking.getFlightId()).getDepartureDate();
+					Date date1 = FlightDataDAL.getFlightDetail(booking.getFlightId()).getArrivalDate();
+					
+					ResultArea.setText(booking.toString() + "\nDeparture date:\n" + 
+							date.toLocaleString() + "\nArrival date:\n" + date1.toLocaleString());
+				}
 			}
 		});
 		submit.setBounds(501, 12, 96, 53);

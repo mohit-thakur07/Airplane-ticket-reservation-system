@@ -76,7 +76,7 @@ public class FlightDetail implements Serializable {
 	
 	public Date getArrivalDate() {
 		
-		return departureDate;
+		return arrivalDate;
 	}
 	
 	public synchronized boolean bookSeats(int noOfPassengers, int flightClass){
